@@ -1,0 +1,1400 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "行政院全球資訊網OpenAPI",
+    "description": "<a href=\"/api/行政院OpenAPI規格書.pdf\" target=\"_blank\" title=\"行政院OpenAPI規格書\">行政院OpenAPI規格書</a>",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "https://opendata.ey.gov.tw/api"
+    }
+  ],
+  "paths": {
+    "/ConsumerProtection/NewsCPC": {
+      "get": {
+        "tags": [
+          "ConsumerProtection"
+        ],
+        "summary": "行政院消費者保護會-消費者保護新聞稿",
+        "description": "<br>日期參數<br />格式：yyyy/mm/dd<br />若輸入字符d表示為今日日期，<br />亦可輸入d-N天，例如:d-30 (今日日期回推30日)",
+        "parameters": [
+          {
+            "name": "Keyword",
+            "in": "query",
+            "description": "關鍵字",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "StartDate",
+            "in": "query",
+            "description": "起始日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "description": "結束日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "MaxSize",
+            "in": "query",
+            "description": "返回最大筆數(最大輸出筆數:1000筆)",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 200
+            }
+          },
+          {
+            "name": "IsRemoveHtmlTag",
+            "in": "query",
+            "description": "是否過濾Html Tag",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NewsCPC"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NewsCPC"
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NewsCPC"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ConsumerProtection/WarningNewsCPC": {
+      "get": {
+        "tags": [
+          "ConsumerProtection"
+        ],
+        "summary": "行政院消費者保護會-消費資（警）訊",
+        "description": "<br>日期參數<br />格式：yyyy/mm/dd<br />若輸入字符d表示為今日日期，<br />亦可輸入d-N天，例如:d-30 (今日日期回推30日)",
+        "parameters": [
+          {
+            "name": "Keyword",
+            "in": "query",
+            "description": "關鍵字",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "StartDate",
+            "in": "query",
+            "description": "起始日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "description": "結束日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "MaxSize",
+            "in": "query",
+            "description": "返回最大筆數(最大輸出筆數:1000筆)",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 200
+            }
+          },
+          {
+            "name": "IsRemoveHtmlTag",
+            "in": "query",
+            "description": "是否過濾Html Tag",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WarningNewsCPC"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WarningNewsCPC"
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WarningNewsCPC"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ConsumerProtection/NecessitiesPrice": {
+      "get": {
+        "tags": [
+          "ConsumerProtection"
+        ],
+        "summary": "行政院消費者保護會-15項民生必需品賣場月均價參考資訊",
+        "description": "<br>類別參數(以下為可查詢選項)<ul><li>鮮乳</li><li>奶粉</li><li>米</li><li>雞蛋</li><li>食用油</li><li>衛生紙</li><li>醬油</li><li>沐浴乳</li><li>洗髮精</li><li>香皂</li><li>洗衣粉</li><li>泡麵</li><li>麵粉</li><li>牙膏</li><li>糖</li></ul>\r\n<br>產品名稱參數(以下為可查詢選項)<table><thead><tr><th>鮮乳</th><th>奶粉</th><th>米</th><th>雞蛋</th><th>食用油</th></tr></thead><tbody><tr><td>統一瑞穗高優質鮮乳</td><td>豐力富全家人營養調製奶粉</td><td>中興世界頂級香米</td><td>義進洗選蛋</td><td>得意的一天葵花油</td></tr><tr><td>味全林鳳營鮮乳</td><td>安怡長青高鈣奶粉</td><td>中興外銷日本的米</td><td>泰安寶貝紅蛋</td><td>泰山不飽和健康調合油</td></tr><tr><td>光泉鮮乳</td><td>桂格維他命高鈣奶粉</td><td>三好尊爵皇家香米</td><td>特選白鮮蛋</td><td>泰山OMEGA3芥花不飽和健康調合油</td></tr><tr><td>光泉乳香世家</td><td>桂格高鐵高鈣奶粉(膠原蛋白配方)</td><td>三好池鮮米</td><td>冠軍蛋</td><td>台糖大豆沙拉油</td></tr><tr><td>福樂一番鮮鮮乳</td><td>克寧即溶奶粉</td><td>天生好米黃金比例</td><td></td><td>統一清爽家芥花油</td></tr><tr><td></td><td>優生A+育嬰配方奶粉</td><td>三好台梗九號米</td><td></td><td></td></tr><tr><td></td><td>豐力富Nature幼兒成長奶粉（1-3歲）</td><td>中興東部米</td><td></td><td></td></tr><tr><td></td><td>S-26金愛兒樂奶粉(0-12月)</td><td>三好皇家香米(15℃系列)</td><td></td><td></td></tr><tr><td></td><td>S-26金幼兒樂奶粉（1-3歲）</td><td></td><td></td><td></td></tr><tr><td></td><td>亞培心美力3成長奶粉(1-3歲)</td><td></td><td></td><td></td></tr><tr><td></td><td>亞培心美力1嬰兒奶粉(0-12個月)</td><td></td><td></td><td></td></tr><tr><td></td><td>味全果汁奶粉(優鈣多配方)</td><td></td><td></td><td></td></tr></tbody></table><br /><table><thead><tr><th>衛生紙</th><th>醬油</th><th>沐浴乳</th><th>洗髮精</th><th>香皂</th></tr></thead><tbody><tr><td>得意抽取式衛生紙</td><td>龜甲萬甘醇醬油</td><td>嬌生PH5.5沐浴乳</td><td>Dove去屑護理洗髮乳</td><td>麗仕香皂</td></tr><tr><td>柔情抽取式衛生紙</td><td>金蘭甘醇醬油</td><td>澎澎香浴乳(亮澤滋潤型)</td><td>海倫仙度絲去屑洗髮乳(海洋活力)</td><td>彎彎浴皂</td></tr><tr><td>春風平版衛生紙</td><td>金蘭醬油</td><td>花王沐浴香皂露(滋潤柔滑型)</td><td>麗仕柔亮絲滑洗髮乳</td><td>多芬柔嫩潔膚塊</td></tr><tr><td>舒潔平版衛生紙</td><td>萬家香陳年醬油</td><td>Biore淨嫩沐浴乳(浪漫保濕型)</td><td>飛柔洗髮乳(去頭皮屑熱油)</td><td></td></tr><tr><td>舒潔威象家用紙巾</td><td>萬家香香菇素蠔油</td><td></td><td>潘婷洗髮乳(絲質順滑)</td><td></td></tr><tr><td>五月花盒裝面紙</td><td>統一四季釀造醬油</td><td></td><td></td><td></td></tr></tbody></table><br /><table><thead><tr><th>洗衣粉</th><th>泡麵</th><th>麵粉</th><th>牙膏</th><th>糖</th></tr></thead><tbody><tr><td>白蘭強效洗衣粉</td><td>維力炸醬麵</td><td>日正高筋麵粉</td><td>黑人超氟牙膏</td><td>台糖細粒特砂</td></tr><tr><td>白蘭強效潔淨洗衣精</td><td>統一肉燥麵</td><td>義峰高筋麵粉</td><td>高露潔全效牙膏(專業美白)</td><td>台糖精製細砂</td></tr><tr><td>白蘭強效潔淨洗衣粉補充包</td><td>味味麵</td><td></td><td>舒酸定長效抗敏牙膏(牙齦護理)</td><td>台糖貳號砂糖</td></tr><tr><td>一匙靈亮彩洗衣精</td><td>味味一品原汁珍味牛肉麵</td><td></td><td>白人牙膏家庭號</td><td>台糖精製特砂</td></tr><tr><td>一匙靈亮彩洗衣粉</td><td></td><td></td><td>德恩奈超氟牙膏</td><td></td></tr><tr><td>加倍潔防螨潔白超濃縮洗衣粉</td><td></td><td></td><td>白人牙膏</td><td></td></tr></tbody></table>",
+        "parameters": [
+          {
+            "name": "CategoryName",
+            "in": "query",
+            "description": "類別",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "description": "產品名稱",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NecessitiesPrice"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NecessitiesPrice"
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NecessitiesPrice"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ConsumerProtection/AppealAndMediation": {
+      "get": {
+        "tags": [
+          "ConsumerProtection"
+        ],
+        "summary": "行政院消費者保護會-申訴及調解案件分類統計資料",
+        "description": "<br>大類參數(以下為可查詢選項)<ul><li>商品</li><li>服務</li></ul>\r\n<br>小類參數(以下為可查詢選項)<table><thead><tr><th>商品</th><th>服務</th></tr></thead><tbody><tr><td>食品</td><td>金融</td></tr><tr><td>健康食品</td><td>保險</td></tr><tr><td>藥品</td><td>電信</td></tr><tr><td>醫療器材</td><td>旅遊</td></tr><tr><td>化粧品</td><td>住宿</td></tr><tr><td>菸酒</td><td>遊樂園</td></tr><tr><td>農產品</td><td>運輸</td></tr><tr><td>飲用水</td><td>停車場</td></tr><tr><td>能源產品</td><td>社服</td></tr><tr><td>房屋</td><td>坐月子</td></tr><tr><td>車輛</td><td>瘦身美容</td></tr><tr><td>電器及周邊產品</td><td>健身</td></tr><tr><td>通訊及周邊產品</td><td>補習</td></tr><tr><td>電腦及周邊產品</td><td>遊學</td></tr><tr><td>相機及周邊產品</td><td>殯葬服務及生前契約</td></tr><tr><td>攝影機及周邊產品</td><td>移民</td></tr><tr><td>玩具及遊戲軟體</td><td>不動產經紀</td></tr><tr><td>服飾、皮件及鞋類</td><td>就業服務及職業訓練</td></tr><tr><td>運動健身器材</td><td>線上遊戲</td></tr><tr><td>文教用品</td><td>有線電視</td></tr><tr><td>出版品</td><td>婚紗攝影</td></tr><tr><td>禮券</td><td>室內設計及裝修</td></tr><tr><td>殯葬設施</td><td>保全</td></tr><tr><td>其他</td><td>徵信</td></tr><tr><td>傢具廚具及家飾用品</td><td>婚姻仲介</td></tr><tr><td></td><td>搬家</td></tr><tr><td></td><td>清潔服務</td></tr><tr><td></td><td>醫療</td></tr><tr><td></td><td>其他</td></tr></tbody></table>\r\n<br>地區參數(以下為可查詢選項)<ul><li>臺北市</li><li>新北市</li><li>臺中市</li><li>臺南市</li><li>高雄市</li><li>桃園市</li><li>新竹縣</li><li>苗栗縣</li><li>南投縣</li><li>彰化縣</li><li>雲林縣</li><li>嘉義縣</li><li>屏東縣</li><li>宜蘭縣</li><li>花蓮縣</li><li>臺東縣</li><li>澎湖縣</li><li>金門縣</li><li>連江縣</li><li>基隆市</li><li>新竹市</li><li>嘉義市</li></ul>",
+        "parameters": [
+          {
+            "name": "Type",
+            "in": "query",
+            "description": "大類",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TypeName",
+            "in": "query",
+            "description": "小類",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DeptName",
+            "in": "query",
+            "description": "地區",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AppealAndMediation"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AppealAndMediation"
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AppealAndMediation"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ConsumerProtection/StandardForm": {
+      "get": {
+        "tags": [
+          "ConsumerProtection"
+        ],
+        "summary": "行政院消費者保護會-定型化契約範本",
+        "description": "<br>日期參數<br />格式：yyyy/mm/dd<br />若輸入字符d表示為今日日期，<br />亦可輸入d-N天，例如:d-30 (今日日期回推30日)",
+        "parameters": [
+          {
+            "name": "Keyword",
+            "in": "query",
+            "description": "關鍵字",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "StartDate",
+            "in": "query",
+            "description": "起始日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "description": "結束日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "MaxSize",
+            "in": "query",
+            "description": "返回最大筆數(最大輸出筆數:1000筆)",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 200
+            }
+          },
+          {
+            "name": "IsRemoveHtmlTag",
+            "in": "query",
+            "description": "是否過濾Html Tag",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StandardForm"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StandardForm"
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StandardForm"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ExecutiveYuan/NewsEy": {
+      "get": {
+        "tags": [
+          "ExecutiveYuan"
+        ],
+        "summary": "行政院即時新聞",
+        "description": "<br>日期參數<br />格式：yyyy/mm/dd<br />若輸入字符d表示為今日日期，<br />亦可輸入d-N天，例如:d-30 (今日日期回推30日)",
+        "parameters": [
+          {
+            "name": "Keyword",
+            "in": "query",
+            "description": "關鍵字",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "StartDate",
+            "in": "query",
+            "description": "起始日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "description": "結束日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "MaxSize",
+            "in": "query",
+            "description": "返回最大筆數(最大輸出筆數:1000筆)",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 200
+            }
+          },
+          {
+            "name": "IsRemoveHtmlTag",
+            "in": "query",
+            "description": "是否過濾Html Tag",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NewsEy"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NewsEy"
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NewsEy"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ExecutiveYuan/NewsEyEn": {
+      "get": {
+        "tags": [
+          "ExecutiveYuan"
+        ],
+        "summary": "行政院英文網站新聞稿",
+        "description": "<br>日期參數<br />格式：yyyy/mm/dd<br />若輸入字符d表示為今日日期，<br />亦可輸入d-N天，例如:d-30 (今日日期回推30日)",
+        "parameters": [
+          {
+            "name": "Keyword",
+            "in": "query",
+            "description": "關鍵字",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "StartDate",
+            "in": "query",
+            "description": "起始日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "description": "結束日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "MaxSize",
+            "in": "query",
+            "description": "返回最大筆數(最大輸出筆數:1000筆)",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 200
+            }
+          },
+          {
+            "name": "IsRemoveHtmlTag",
+            "in": "query",
+            "description": "是否過濾Html Tag",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NewsEyEn"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NewsEyEn"
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NewsEyEn"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/JointServiceCenter/JointServiceCenter": {
+      "get": {
+        "tags": [
+          "JointServiceCenter"
+        ],
+        "summary": "行政院聯合服務中心",
+        "description": "<br>區域參數(以下為可查詢選項)<ul><li>中部</li><li>雲嘉南</li><li>南部</li><li>東部</li><li>金馬</li></ul>\r\n<br>類型參數(以下為可查詢選項)<br /><table><thead><tr><th>中部</th><th>雲嘉南</th><th>南部</th><th>東部</th><th>金馬</th></tr></thead><tbody><tr><td>最新消息</td><td>焦點新聞</td><td>新聞訊息</td><td>焦點新聞</td><td>金馬訊息</td></tr><tr><td>工作概況</td><td>活動看板</td><td>中心新聞</td><td>活動訊息</td><td>政令宣導</td></tr><tr><td>公告資訊</td><td>公告訊息</td><td></td><td>工作概況</td><td>工作概況</td></tr></tbody></table>\r\n<br>日期參數<br />格式：yyyy/mm/dd<br />若輸入字符d表示為今日日期，<br />亦可輸入d-N天，例如:d-30 (今日日期回推30日)",
+        "parameters": [
+          {
+            "name": "Area",
+            "in": "query",
+            "description": "區域",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Category",
+            "in": "query",
+            "description": "類型",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Keyword",
+            "in": "query",
+            "description": "關鍵字",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "StartDate",
+            "in": "query",
+            "description": "起始日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "description": "結束日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "MaxSize",
+            "in": "query",
+            "description": "返回最大筆數(最大輸出筆數:1000筆)",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 200
+            }
+          },
+          {
+            "name": "IsRemoveHtmlTag",
+            "in": "query",
+            "description": "是否過濾Html Tag",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JointServiceCenter"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JointServiceCenter"
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JointServiceCenter"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Performance/EyResolution": {
+      "get": {
+        "tags": [
+          "Performance"
+        ],
+        "summary": "行政院院會決議",
+        "description": "<br>日期參數<br />格式：yyyy/mm/dd<br />若輸入字符d表示為今日日期，<br />亦可輸入d-N天，例如:d-30 (今日日期回推30日)",
+        "parameters": [
+          {
+            "name": "Keyword",
+            "in": "query",
+            "description": "關鍵字",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "StartDate",
+            "in": "query",
+            "description": "起始日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "description": "結束日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "MaxSize",
+            "in": "query",
+            "description": "返回最大筆數(最大輸出筆數:1000筆)",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 200
+            }
+          },
+          {
+            "name": "IsRemoveHtmlTag",
+            "in": "query",
+            "description": "是否過濾Html Tag",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EyResolution"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EyResolution"
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EyResolution"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Performance/EyMotion": {
+      "get": {
+        "tags": [
+          "Performance"
+        ],
+        "summary": "行政院院會議案",
+        "description": "<br>日期參數<br />格式：yyyy/mm/dd<br />若輸入字符d表示為今日日期，<br />亦可輸入d-N天，例如:d-30 (今日日期回推30日)",
+        "parameters": [
+          {
+            "name": "Keyword",
+            "in": "query",
+            "description": "關鍵字",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "StartDate",
+            "in": "query",
+            "description": "起始日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "description": "結束日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "MaxSize",
+            "in": "query",
+            "description": "返回最大筆數(最大輸出筆數:1000筆)",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 200
+            }
+          },
+          {
+            "name": "IsRemoveHtmlTag",
+            "in": "query",
+            "description": "是否過濾Html Tag",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EyMotioncs"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EyMotioncs"
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EyMotioncs"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Performance/EyPolicy": {
+      "get": {
+        "tags": [
+          "Performance"
+        ],
+        "summary": "行政院重要政策",
+        "description": "<br>日期參數<br />格式：yyyy/mm/dd<br />若輸入字符d表示為今日日期，<br />亦可輸入d-N天，例如:d-30 (今日日期回推30日)",
+        "parameters": [
+          {
+            "name": "Keyword",
+            "in": "query",
+            "description": "關鍵字",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "StartDate",
+            "in": "query",
+            "description": "起始日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "description": "結束日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "MaxSize",
+            "in": "query",
+            "description": "返回最大筆數(最大輸出筆數:1000筆)",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 200
+            }
+          },
+          {
+            "name": "IsRemoveHtmlTag",
+            "in": "query",
+            "description": "是否過濾Html Tag",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EyPolicy"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EyPolicy"
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EyPolicy"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Schedule/Schedule": {
+      "get": {
+        "tags": [
+          "Schedule"
+        ],
+        "summary": "行政院首長行程",
+        "description": "<br>日期參數<br />格式：yyyy/mm/dd<br />若輸入字符d表示為今日日期，<br />亦可輸入d-N天，例如:d-30 (今日日期回推30日)<br />\r\n<br>首長名稱參數(以下為可查詢選項)<ul><li>院長</li><li>副院長</li><li>秘書長</li></ul>",
+        "parameters": [
+          {
+            "name": "Keyword",
+            "in": "query",
+            "description": "關鍵字",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "StartDate",
+            "in": "query",
+            "description": "起始日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "description": "結束日期",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "description": "首長名稱",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "MaxSize",
+            "in": "query",
+            "description": "返回最大筆數(最大輸出筆數:1000筆)",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 200
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Schedule"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Schedule"
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Schedule"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AppealAndMediation": {
+        "type": "object",
+        "properties": {
+          "大類": {
+            "type": "string",
+            "description": ""
+          },
+          "小類": {
+            "type": "string",
+            "description": ""
+          },
+          "地區": {
+            "type": "string",
+            "description": ""
+          },
+          "統計值": {
+            "type": "string",
+            "description": ""
+          },
+          "統計日期": {
+            "type": "string",
+            "description": ""
+          },
+          "時間起點": {
+            "type": "string",
+            "description": ""
+          },
+          "時間終點": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "EyMotioncs": {
+        "type": "object",
+        "properties": {
+          "標題": {
+            "type": "string",
+            "description": ""
+          },
+          "內容": {
+            "type": "string",
+            "description": ""
+          },
+          "上版日期": {
+            "type": "string",
+            "description": ""
+          },
+          "相關圖片": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "相關檔案": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "相關連結": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "來源網址": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "EyPolicy": {
+        "type": "object",
+        "properties": {
+          "標題": {
+            "type": "string",
+            "description": ""
+          },
+          "內容": {
+            "type": "string",
+            "description": ""
+          },
+          "上版日期": {
+            "type": "string",
+            "description": ""
+          },
+          "相關圖片": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "相關檔案": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "相關連結": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "來源網址": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "EyResolution": {
+        "type": "object",
+        "properties": {
+          "標題": {
+            "type": "string",
+            "description": ""
+          },
+          "內容": {
+            "type": "string",
+            "description": ""
+          },
+          "上版日期": {
+            "type": "string",
+            "description": ""
+          },
+          "來源網址": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "JointServiceCenter": {
+        "type": "object",
+        "properties": {
+          "區域": {
+            "type": "string",
+            "description": ""
+          },
+          "類型": {
+            "type": "string",
+            "description": ""
+          },
+          "標題": {
+            "type": "string",
+            "description": ""
+          },
+          "內容": {
+            "type": "string",
+            "description": ""
+          },
+          "上版日期": {
+            "type": "string",
+            "description": ""
+          },
+          "相關圖片": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "相關檔案": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "相關連結": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "來源網址": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "NecessitiesPrice": {
+        "type": "object",
+        "properties": {
+          "類別": {
+            "type": "string",
+            "description": ""
+          },
+          "編號": {
+            "type": "integer",
+            "description": "",
+            "format": "int32"
+          },
+          "產品名稱": {
+            "type": "string",
+            "description": ""
+          },
+          "規格": {
+            "type": "string",
+            "description": ""
+          },
+          "統計值": {
+            "type": "string",
+            "description": ""
+          },
+          "時間起點": {
+            "type": "string",
+            "description": ""
+          },
+          "時間終點": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "NewsCPC": {
+        "type": "object",
+        "properties": {
+          "標題": {
+            "type": "string",
+            "description": ""
+          },
+          "內容": {
+            "type": "string",
+            "description": ""
+          },
+          "上版日期": {
+            "type": "string",
+            "description": ""
+          },
+          "來源網址": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "NewsEy": {
+        "type": "object",
+        "properties": {
+          "標題": {
+            "type": "string",
+            "description": ""
+          },
+          "內容": {
+            "type": "string",
+            "description": ""
+          },
+          "上版日期": {
+            "type": "string",
+            "description": ""
+          },
+          "來源網址": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "NewsEyEn": {
+        "type": "object",
+        "properties": {
+          "標題": {
+            "type": "string",
+            "description": ""
+          },
+          "內容": {
+            "type": "string",
+            "description": ""
+          },
+          "上版日期": {
+            "type": "string",
+            "description": ""
+          },
+          "來源網址": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "Schedule": {
+        "type": "object",
+        "properties": {
+          "首長": {
+            "type": "string",
+            "description": ""
+          },
+          "行程日期": {
+            "type": "string",
+            "description": ""
+          },
+          "標題": {
+            "type": "string",
+            "description": ""
+          },
+          "地點名稱": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "來源網址": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "StandardForm": {
+        "type": "object",
+        "properties": {
+          "標題": {
+            "type": "string",
+            "description": ""
+          },
+          "內容": {
+            "type": "string",
+            "description": ""
+          },
+          "上版日期": {
+            "type": "string",
+            "description": ""
+          },
+          "相關檔案": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "相關連結": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "來源網址": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "WarningNewsCPC": {
+        "type": "object",
+        "properties": {
+          "標題": {
+            "type": "string",
+            "description": ""
+          },
+          "內容": {
+            "type": "string",
+            "description": ""
+          },
+          "上版日期": {
+            "type": "string",
+            "description": ""
+          },
+          "來源網址": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "ExecutiveYuan",
+      "description": "行政院新聞"
+    },
+    {
+      "name": "Performance",
+      "description": ""
+    },
+    {
+      "name": "Schedule",
+      "description": "首長行程"
+    },
+    {
+      "name": "ConsumerProtection",
+      "description": "消費者保護會相關"
+    },
+    {
+      "name": "JointServiceCenter",
+      "description": "各服務中心相關"
+    }
+  ]
+}
